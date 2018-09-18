@@ -1,0 +1,54 @@
+(3 (10 9 *) -) 3 +
+
+(3 - 90) + 3
+
+Operator is farthest to the right,
+ a b BinaryOp --> Operates a BinaryOp b
+	- If none there, op plus 0
+acc = 0?
+
+TokInt x = TokInt (x + 0)
+
+Parse for operators first
+
+If Op, check el to the right, if Int, then check next right Int
+
+Full structure Op num num
+
+Try:
+  Reverse list
+  If Op:
+    If next two are nums
+    Op num num
+    If next is op
+       recursively call on rest
+    If next is num then op
+       op num (recursively call)
+
+3 10 9 * - 3 +
+
+(+) (- (* 10 9) 3) 3
+
+3 + (3 - ((10+0) * (9+0)))
+
+
+3 10 9 * - 3 +
+
+TokInt 3, TokInt 10, TokInt 9, TokOp *, TokOp -, TokInt 3, TokOp +
+
+
+right fold: takes apart starting from the left, operates from the right
+left fold: takes apart starting from the right, operates from the left
+
+
+
+
+
+
+
+
+
+NEW STRATEGY
+
+Acc is []
+Add accordingly, when Op, apply and replace elems in []
