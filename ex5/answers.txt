@@ -1,0 +1,25 @@
+1)
+
+    1. d
+    2. Context-free
+    3. e
+    4. c 
+    5. 2
+
+2)
+
+    6) d
+    7) b
+    8) c 
+    9) The elements of each letter type have their own unique ID marker.
+        (ds_d344 for letterID of Large, ds346 for letterID of Medium)
+    10) a
+    11) a
+    12) c
+    13) a
+    14) b
+    15) Positive: These functions are 0% susceptiblle to any 
+        errors relating to negative numbers. 
+        Negative: It is more complicated to use this implementation when working with  
+        other functions that use integers. Conversions have to be repeatedly made.
+    
