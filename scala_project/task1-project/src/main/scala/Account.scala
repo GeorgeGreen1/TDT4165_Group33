@@ -9,6 +9,7 @@ class Account(val bank: Bank, initialBalance: Double) {
         }
         def getBal(): Double = {
             return bal;
+	    // test for git pushing
         }
     }
 
