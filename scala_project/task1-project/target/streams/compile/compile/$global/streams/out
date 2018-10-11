@@ -1,13 +1,4 @@
-[0m[[0m[31merror[0m] [0m[0mC:\Users\Jake\Documents\Academic\TDT4165\Assignments\TDT4165_Group33\scala_project\task1-project\src\main\scala\Account.scala:7:20: identifier expected but 'var' found.[0m
-[0m[[0m[31merror[0m] [0m[0m        def setBal(var entry: Double): Unit = {[0m
-[0m[[0m[31merror[0m] [0m[0m                   ^[0m
-[0m[[0m[31merror[0m] [0m[0mC:\Users\Jake\Documents\Academic\TDT4165\Assignments\TDT4165_Group33\scala_project\task1-project\src\main\scala\Account.scala:13:5: ':' expected but '}' found.[0m
-[0m[[0m[31merror[0m] [0m[0m    }[0m
-[0m[[0m[31merror[0m] [0m[0m    ^[0m
-[0m[[0m[31merror[0m] [0m[0mC:\Users\Jake\Documents\Academic\TDT4165\Assignments\TDT4165_Group33\scala_project\task1-project\src\main\scala\Bank.scala:16:47: ')' expected but ';' found.[0m
-[0m[[0m[31merror[0m] [0m[0m    def generateAccountId: Int = return (uid++;)[0m
-[0m[[0m[31merror[0m] [0m[0m                                              ^[0m
-[0m[[0m[31merror[0m] [0m[0mC:\Users\Jake\Documents\Academic\TDT4165\Assignments\TDT4165_Group33\scala_project\task1-project\src\main\scala\Bank.scala:16:48: illegal start of definition[0m
-[0m[[0m[31merror[0m] [0m[0m    def generateAccountId: Int = return (uid++;)[0m
-[0m[[0m[31merror[0m] [0m[0m                                               ^[0m
-[0m[[0m[31merror[0m] [0m[0mfour errors found[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/viviertanguy/Documents/NTNU/Programming_Languages/GITHUB/TDT4165_Group33/scala_project/task1-project/src/main/scala/Account.scala:27:51: not found: type Bool[0m
+[0m[[0m[31merror[0m] [0m[0m        def hasSufficientFunds(amount : Double) : Bool = {[0m
+[0m[[0m[31merror[0m] [0m[0m                                                  ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m
