@@ -1,4 +1,4 @@
-[0m[[0m[31merror[0m] [0m[0m/Users/viviertanguy/Documents/NTNU/Programming_Languages/GITHUB/TDT4165_Group33/scala_project/task1-project/src/main/scala/Account.scala:27:51: not found: type Bool[0m
-[0m[[0m[31merror[0m] [0m[0m        def hasSufficientFunds(amount : Double) : Bool = {[0m
-[0m[[0m[31merror[0m] [0m[0m                                                  ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/jackconsenstein/Desktop/TDT4165_Group33/scala_project/task1-project/src/main/scala/Account.scala:67:14: method processTransactions in class Bank cannot be accessed in Bank[0m
+[0m[[0m[31merror[0m] [0m[0m        bank processTransactions[0m
+[0m[[0m[31merror[0m] [0m[0m             ^[0m
 [0m[[0m[31merror[0m] [0m[0mone error found[0m

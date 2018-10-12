@@ -20,7 +20,7 @@ class Account(val bank: Bank, initialBalance: Double) {
         }
 
         // Substract from current balance
-        def substract(amount : Double) = {
+        def subtract(amount : Double) = {
             this.synchronized{
                 bal = bal - amount;
             }
@@ -30,21 +30,21 @@ class Account(val bank: Bank, initialBalance: Double) {
         // amount
         def hasSufficientFunds(amount : Double) : Boolean = {
             this.synchronized{
-                return (bal > amount);
+                return (bal >= amount);
             }
         }
 
     }
 
     val balance = new Balance(initialBalance)
-    val uid = this.synchronized { bank.generateAccountId }  
+    val uid = this.synchronized { bank.generateAccountId }
 
     def withdraw(amount: Double): Unit = {
         if (amount < 0) {
             throw new IllegalAmountException();
         }
         else if (balance.hasSufficientFunds(amount)) {
-            balance.substract(amount);
+            balance.subtract(amount);
         }
         else {
             throw new NoSufficientFundsException();
@@ -63,6 +63,6 @@ class Account(val bank: Bank, initialBalance: Double) {
     }
 
     def transferTo(account: Account, amount: Double) = {
-        bank addTransactionToQueue (this, account, amount);
+        bank addTransactionToQueue(this, account, amount);
     }
 }

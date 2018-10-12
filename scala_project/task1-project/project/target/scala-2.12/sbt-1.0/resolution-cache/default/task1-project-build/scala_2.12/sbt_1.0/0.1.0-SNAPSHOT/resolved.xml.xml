@@ -4,7 +4,7 @@
 		module="task1-project-build"
 		revision="0.1.0-SNAPSHOT"
 		status="integration"
-		publication="20181011161752"
+		publication="20181012135452"
 		e:sbtVersion="1.0" e:scalaVersion="2.12"
 	>
 		<description>

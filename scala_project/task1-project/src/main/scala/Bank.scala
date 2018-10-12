@@ -9,8 +9,10 @@ class Bank(val allowedAttempts: Integer = 3) {
 
     class uid (var id: Integer){
         def incrementRet(): Integer = {
-            id+= 1;
-            id-1;
+            this.synchronized{
+            id += 1;
+            return id
+            }
         }
     }
 
@@ -22,7 +24,14 @@ class Bank(val allowedAttempts: Integer = 3) {
     // Hint: use a counter
     def generateAccountId: Int = uid.incrementRet();
 
-    private def processTransactions: Unit = {return}
+    private def processTransactions: Unit = {
+        println("processing transactions")
+        val it = transactionsQueue.iterator
+        while (it.hasNext){
+            var trans = transactionsQueue.pop
+            trans.run
+        }
+    }
 
     def addAccount(initialBalance: Double): Account = {
         new Account(this, initialBalance)

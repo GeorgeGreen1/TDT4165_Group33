@@ -85,13 +85,19 @@ class AccountTransferTests extends FunSuite {
 
   test("Test 08: Valid transfer between accounts") {
     val bank = new Bank()
+    println("made new bank")
 
     val acc1 = bank.addAccount(100)
+    println("account1")
     val acc2 = bank.addAccount(200)
+    println("account2")
 
     acc1 transferTo(acc2, 50)
+    println("transferring...")
 
     while (bank.getProcessedTransactionsAsList.size != 1) {
+      println(bank.getProcessedTransactionsAsList.size)
+      println("sleeping for 1hunna")
       Thread.sleep(100)
     }
 
@@ -163,18 +169,18 @@ class AccountTransferTests extends FunSuite {
     var failed = 0
     for (x <- 1 to 100) {
       val bank = new Bank(allowedAttempts = 3)
-  
+
       val acc1 = new Account(bank, 100)
       val acc2 = new Account(bank, 100)
       val acc3 = new Account(bank, 100)
-  
+
       for (i <- 1 to 6) { acc1 transferTo (acc2, 50) }
       for (j <- 1 to 2) { acc3 transferTo (acc1, 50) }
-      
+
       while (bank.getProcessedTransactionsAsList.size != 8) {
         Thread.sleep(100)
       }
-  
+
       if (!(acc1.getBalanceAmount == 0
         && acc2.getBalanceAmount == 300
         && acc3.getBalanceAmount == 0)) failed += 1
@@ -187,14 +193,14 @@ class AccountTransferTests extends FunSuite {
     var failed = 0
     for (x <- 1 to 100) {
       val bank = new Bank(allowedAttempts = 1)
-  
+
       val acc1 = new Account(bank, 100)
       val acc2 = new Account(bank, 100)
       val acc3 = new Account(bank, 100)
-  
+
       for (i <- 1 to 6) { acc1 transferTo (acc2, 50) }
       for (j <- 1 to 2) { acc3 transferTo (acc1, 50) }
-  
+
       while (bank.getProcessedTransactionsAsList.size != 8) {
         Thread.sleep(100)
       }
