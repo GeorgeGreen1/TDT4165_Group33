@@ -37,7 +37,7 @@ class Account(val bank: Bank, initialBalance: Double) {
     }
 
     val balance = new Balance(initialBalance)
-    val uid = bank.generateAccountId
+    val uid = this.synchronized { bank.generateAccountId }  
 
     def withdraw(amount: Double): Unit = {
         if (amount < 0) {
