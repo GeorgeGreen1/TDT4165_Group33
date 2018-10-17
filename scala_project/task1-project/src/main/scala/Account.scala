@@ -33,11 +33,14 @@ class Account(val bank: Bank, initialBalance: Double) {
                 return (bal >= amount);
             }
         }
-
     }
 
     val balance = new Balance(initialBalance)
-    val uid = this.synchronized { bank.generateAccountId }
+    val uid = this.synchronized { 
+        var x = bank.generateAccountId;
+        println("Generated ID: " + x);
+        x;
+        }
 
     def withdraw(amount: Double): Unit = {
         if (amount < 0) {
@@ -63,6 +66,7 @@ class Account(val bank: Bank, initialBalance: Double) {
     }
 
     def transferTo(account: Account, amount: Double) = {
+        println(amount + " kroner vil ga inn " + account.uid)
         bank addTransactionToQueue(this, account, amount);
     }
 }

@@ -12,31 +12,40 @@ class TransactionQueue {
 
     // Remove and return the first element from the queue
     def pop: Transaction = {
-        val next = q.dequeue
-        println("pop")
-        return next
+        this.synchronized{
+            val next = q.dequeue
+            println("pop")
+            return next
+        }
     }
 
     // Return whether the queue is empty
     def isEmpty: Boolean = {
-        return (q.size == 0)
+        this.synchronized{
+          return (q.size == 0)
+        }
     }
 
     // Add new element to the back of the queue
     def push(t: Transaction): Unit = {
-        q += t
-        println("push")
-        println(q)
+        this.synchronized{
+            q += t
+            println("Push --> Added tx: " + t)
+        }
     }
 
     // Return the first element from the queue without removing it
     def peek: Transaction = {
-        return q.head
+        this.synchronized{
+            return q.head
+        }
     }
 
     // Return an iterator to allow you to iterate over the queue
     def iterator: Iterator[Transaction] = {
-        return q.iterator
+        this.synchronized{
+            return q.iterator
+        }
     }
 }
 
@@ -45,28 +54,52 @@ class Transaction(val transactionsQueue: TransactionQueue,
                   val from: Account,
                   val to: Account,
                   val amount: Double,
-                  val allowedAttemps: Int) extends Runnable {
+                  val allowedAttempts: Int) extends Runnable {
 
   var status: TransactionStatus.Value = TransactionStatus.PENDING
 
   override def run: Unit = {
 
+      var attemptsLeft = allowedAttempts;
+      var over = false;
+      var success = false;
+
       def doTransaction() = {
           from withdraw amount
-          to deposit amount
+          to deposit amount 
+      }
+      def tryTransaction() = {
+        if (from.uid < to.uid) from synchronized {
+            to synchronized {
+                doTransaction
+            }
+        } else to synchronized {
+            from synchronized {
+                doTransaction
+            }
+        }
+      }
+      while ((attemptsLeft>0)&&(!over)){
+          try {
+              tryTransaction;
+              over = true;
+              success = true;
+          }
+          catch{
+              case e: IllegalAmountException => attemptsLeft-=1;
+              case e: NoSufficientFundsException => attemptsLeft-=1;
+          }
+          if (attemptsLeft == 0){
+              over = true;
+          }
+      }
+      if (!success){
+          status = TransactionStatus.FAILED;
+      }
+      else {
+          status = TransactionStatus.SUCCESS;
       }
 
-      if (from.uid < to.uid) from synchronized {
-          to synchronized {
-            doTransaction
-          }
-      } else to synchronized {
-          from synchronized {
-            doTransaction
-          }
-      }
-
-      // Extend this method to satisfy requirements.
-
+      processedTransactions.push(this)
     }
 }
